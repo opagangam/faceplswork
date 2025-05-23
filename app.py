@@ -52,7 +52,7 @@ iface=gr.Interface(
     title="Face Recognition",
     description="Internhsip"
 )
-iface.launch()
+iface.launch(server_name="0.0.0.0", server_port=7860)
 def go_through_folder():
     if not os.path.isdir(media_dir):
         print("media folder missing.")
