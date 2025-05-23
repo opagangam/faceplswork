@@ -29,22 +29,15 @@ def handle_file(path):
                 continue
 
         record_attendance(seen, real)
-        msg = f"[IMG] {fname} — {seen} seen / {real} real"
-        print(msg)
-        return msg
+        return f"[IMG] {fname}: {seen} faces seen / {real} real"
 
     # or maybe it's a video?
     elif fname.endswith(".mp4") or fname.endswith(".webm") or fname.endswith(".avi") or fname.endswith(".mov"):
         seen, real = analyze_vid(path)
         record_attendance(seen, real)
-        msg = f"[VID] {fname} — {seen} seen / {real} real"
-        print(msg)
-        return msg
-
+        return f"[VID] {fname}: {seen} faces seen / {real} real"
     else:
-        msg = f"File format not supported -> {fname}"
-        print(msg)
-        return msg
+        return f"Unsupported file type: {fname}"
 iface=gr.Interface(
     fn=handle_file,
     inputs=gr.File(label="Uplaod"),
